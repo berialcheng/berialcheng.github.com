@@ -2,7 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>Cheng's Blog</title>
+    <title>图像识别 - Cheng's Blog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -10,18 +10,15 @@
 
 
 
-<link rel="canonical" href="">
+<link rel="canonical" href="/.html">
+
         <meta name="author" content="Cheng" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="记录一次图像识别技术的基础调研" />
 
     <!-- Enable latex plugin -->
 
 
-    <!-- Open Graph tags -->
-        <meta property="og:site_name" content="Cheng's Blog" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="Cheng's Blog"/>
-        <meta property="og:url" content=""/>
-        <meta property="og:description" content="Cheng's Blog"/>
 
 
     <!-- Bootstrap -->
@@ -35,6 +32,8 @@
               title="Cheng's Blog ATOM Feed"/>
 
 
+        <link href="/feeds/domain.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Cheng's Blog Domain ATOM Feed"/>
 
 </head>
 <body>
@@ -56,7 +55,7 @@ Cheng's Blog            </a>
                         <li >
                             <a href="/category/database.html">Database</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="/category/domain.html">Domain</a>
                         </li>
                         <li >
@@ -78,114 +77,93 @@ Cheng's Blog            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="/.html">图像识别</a></h2>
-                <div class="summary"><p>记录一次图像识别技术的基础调研</p>
-                    <a class="btn btn-default btn-xs" href="/.html">more ...</a>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/.html"
+                       rel="bookmark"
+                       title="Permalink to 图像识别">
+                        图像识别
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-10-01T22:00:00+08:00"> Wed 01 October 2014</time>
+    </span>
+
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/.html"></a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/cap.html">CAP / BASE 理论</a></h2>
-                <div class="summary"><h2>引用</h2>
-<ol>
-<li><a href="http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed">CAP Twelve Years Later: How the "Rules" Have Changed</a></li>
-<li><a href="http://codahale.com/you-cant-sacrifice-partition-tolerance/">You Can’t Sacrifice Partition Tolerance</a></li>
-</ol>
-                    <a class="btn btn-default btn-xs" href="/cap.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/jdk-history.html">JDK History</a></h2>
-                <div class="summary"><p>Timeline of JDK</p>
-                    <a class="btn btn-default btn-xs" href="/jdk-history.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/jvm.html">JVM</a></h2>
-                <div class="summary">
-                    <a class="btn btn-default btn-xs" href="/jvm.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/markdown.html">Markdown</a></h2>
-                <div class="summary"><blockquote>
-<p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。</p>
-</blockquote>
-<h3>一些Markdown 有用的链接</h3>
+                <h2>图像检索的相关背景</h2>
+<p>从难易程度和发展顺序,不同的研究方向上大致上可以将图像检索划分为这么几个阶段<br />
+1. 基于文本的关键字搜索图像（CBIR） – 淘宝: 搜索”帽子”, 得到与帽子相关的图片产品<br />
+2. 基于内容的图像搜索（TBIR） – 淘宝：输入你喜欢的图片, 找到同款的产品<br />
+3. 基于语义的图像检索/图像识别 – 淘宝: 随手拍下喜欢帽子的图片, 通过搜索就能够找到同款或相似的额产品</p>
+<h2>阶段一 基于文本关键字搜索图像 (Text-based Image Retrieval)</h2>
+<p>相对普通的用例，用户输入文本关键字, 根据预定义的索引, 查找相对应的图片<br />
+1. 特征类别分化，图片库 --&gt; 图片特征库 --&gt; 关键字 类别 输入 匹配 检索结果
+没有太多可以讨论的, 关键在于根据图片建立反向关键词索引的过程.</p>
+<h2>阶段二 反向图像搜索/基于内容的图像搜索 (Reverse Image Search /content-based image retrieval)</h2>
+<p>基于内容的图像检索技术利用图像本身就有的物理信息，通过对图像的颜色、纹理、形状和空间位置等特征进行比较，在一些特定的领域得到了大量的应用。 
+从程序过程上来看， 可以分为如下： 图片特征值提取 --&gt; 图片特征库 --&gt; 待识别图片 特征提取 匹配 检索结果。<br />
+目前图像识别搜索采用的算法大都直接使用或者借鉴了SIFT， 通过定义一些的特征点或者说是指纹（颜色，纹理，形状特征）来取得图像文件的特征值。图片指纹并不能达到图片在视觉上的相似性搜索，当然它可适用于比较精准的搜索.  </p>
+<h5>罗列下常见的算法：</h5>
 <ul>
-<li><a href="http://www.jianshu.com/p/1e402922ee32">Markdown 简介</a>  </li>
-<li><a href="http://wowubuntu.com/markdown/">Markdown 语法 中文</a></li>
-<li><a href="http://mahua.jser.me/">一个在线编辑markdown文档的编辑器</a></li>
-<li><a href="http://apple4us.com/2012/02/why-writers-should-use-markdown/">为什么作家应该用 Markdown 保存自己的文稿</a></li>
+<li>SIFT(Scale-invariant feature transform), Lowe, 1999 -- 分析提取图像中的向量特征点进行匹配  </li>
+<li>PCA-SIFT(Principle Component Analysis)  </li>
+<li>SURF(Speeded Up Robust Features)  </li>
 </ul>
-                    <a class="btn btn-default btn-xs" href="/markdown.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/mongo replica set and pymongo.html">PyMongo & Mongodb Replica Set</a></h2>
-                <div class="summary"><p>记录工作项目中MongoDB的从standalone迁移到replica set环境，而后pymongo所需要考虑的配置调整</p>
-                    <a class="btn btn-default btn-xs" href="/mongo replica set and pymongo.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/nosql.html">NoSQL</a></h2>
-                <div class="summary"><blockquote>
-<p>SQL 充当了应用程序之间的一种集成机制，所有的应用程序都在操作内容一致的持久数据。 但是各种应用程序之间的结构和性能要求不尽相同，随着阻抗失衡问题凸显和对于大数据的不适应，逐渐催生出了NoSQL。</p>
-</blockquote>
-<h2>数据库发展的时间线</h2>
-<p><img alt="数据库时间线" src="数据库时间线.png" /></p>
-<h2>引用</h2>
+<h5>一些基于反向搜索的商业案例:</h5>
 <ol>
-<li>NoSQL Distilled -- by Pramond J, Martin Fowler</li>
-<li></li>
+<li>http://tineye.com – 基于图片的指纹</li>
+<li>http://www.tiltomo.com -- flickr 主题风格的色调和机制</li>
+<li>http://www.incogna.com -- 色彩和形状上的相似性</li>
+<li>http://www.terragalleria.com -- 视觉上的相似性</li>
 </ol>
-                    <a class="btn btn-default btn-xs" href="/nosql.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/oracle-isolation.html">Oracle Isolation</a></h2>
-                <div class="summary">
-                    <a class="btn btn-default btn-xs" href="/oracle-isolation.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="/pelican and github.html">利用Pelican和Github建立博客</a></h2>
-                <div class="summary"><p>Jekyll基于ruby,Pelican基于python</p>
-<div class="highlight"><pre>pip install pelican
-</pre></div>
-
-
-<div class="highlight"><pre>pip install Markdown
-</pre></div>
-
-
-<div class="highlight"><pre>mkdir dir_name
-cd dir_name
-</pre></div>
-
-
-<div class="highlight"><pre>pelican-quickstart
-</pre></div>
-
-
-<div class="highlight"><pre>make publish
-</pre></div>
-
-
-<div class="highlight"><pre>make serve
-</pre></div>
-                    <a class="btn btn-default btn-xs" href="/pelican and github.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+<h2>阶段三 图像识别 (Image Recognition)</h2>
+<p>更为广泛的图像检索（也称这为基于内容的图像检索），是希望能返回与查询图像在视觉上相似的图像而非要一模一样的内容。 纯粹的逆向图片搜索， 只能帮助找到特征值逼近相同的图片， 并无法分类解释图片当中的具体内容。而更为高级的图片是要建立高层的语义特征而非简单的颜色、纹理、形状等低层特征。<br />
+Google利用了其原有的庞大的文本数据库， 为图像反查和文本搜索引擎的结合; 首先查询和原图相关的图片,再从全文搜索引擎猜测相关的内容。换句话说, 通过其web的上下文信息来反补了其原本不足的语义。<br />
+Google的方式：找到原图、认出图中是什么、找到类似的图、找到相关网页。
+举个例子: 依据蘑菇的图片进行搜索</p>
+<h5>上图的内容分别为:</h5>
+<ol>
+<li>找到原图</li>
+<li>认出图中是什么</li>
+<li>找到类似的图</li>
+<li>找到相关的网页</li>
+</ol>
+<p>思考一下此类方案的局限性 ，在于你用来搜索的原图片，是网上已有的，而不是自己拍摄的实物。试图在网上搜索出自己刚拍的一张照片里面究竟是什么东西，这种技术还处于极其原始的状态。<br />
+目前只能做到对照片中外观特征十分明显的对象做初步的模式识别，并辅以人工验证。
+比如交通摄像头，对车牌这个方方正正的大蓝框和里面的大白字进行识别，然后让交警亲自比对，才能认定一个车牌号是否正确；<br />
+日常生活中更常见的二维码、条码、指纹识别、文字OCR，无一不是特征极其明显，而且拍摄时还要特意摆正对准。<br />
+换句话说,复杂图像的图像识别技术还处于很原始的阶段。  </p>
+<h2>综述</h2>
+<p>//todo</p>
+<h2>资料引用</h2>
+<ol>
+<li>图像检索技术进展综述 -- 甘晨，易法令，王圆妹  长江大学计算机科学学院 434023</li>
+<li>http://en.wikipedia.org/wiki/Scale-invariant_feature_transform -- SIFT 基本介绍</li>
+<li>http://leafsnap.com/ --有意思的app, 拍摄植物的一枚叶子、花，果实或种子，app会分析告诉你这是什么植物。</li>
+<li>http://www.ipol.im/pub/pre/82/ -- The Anatomy of the SIFT Method</li>
+<li>//todo</li>
+</ol>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
