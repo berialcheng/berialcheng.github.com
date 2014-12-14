@@ -32,12 +32,8 @@
     <link href="/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
 
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Cheng's Blog ATOM Feed"/>
 
 
-        <link href="/feeds/other.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Cheng's Blog Other ATOM Feed"/>
 
 </head>
 <body>
@@ -56,6 +52,9 @@ Cheng's Blog            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
+                        <li >
+                            <a href="/category/cloud.html">Cloud</a>
+                        </li>
                         <li >
                             <a href="/category/database.html">Database</a>
                         </li>
@@ -98,8 +97,19 @@ Cheng's Blog            </a>
             </article>
             <hr/>
             <article>
+                <h2><a href="/SVN & Git.html">SVN & Git</a></h2>
+                <div class="summary"><p>尝试对一台老旧电脑上的Eclipse做一次简易的优化</p>
+                    <a class="btn btn-default btn-xs" href="/SVN & Git.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="/pelican and github.html">利用Pelican和Github建立博客</a></h2>
-                <div class="summary"><p>Jekyll基于ruby,Pelican基于python</p>
+                <div class="summary"><blockquote>
+<p>Pelican is a static site generator, written in Python.   </p>
+</blockquote>
+<p>Jekyll基于ruby,Pelican基于python</p>
+<h2>建立本地的静态博客</h2>
 <div class="highlight"><pre>pip install pelican
 </pre></div>
 
@@ -123,6 +133,21 @@ cd dir_name
 
 <div class="highlight"><pre>make serve
 </pre></div>
+
+
+<h2>使用不同的Theme</h2>
+<div class="highlight"><pre>cd cebong
+</pre></div>
+
+
+<div class="highlight"><pre>
+</pre></div>
+
+
+<h2>引用</h2>
+<ol>
+<li><a href="http://docs.getpelican.com/en/3.5.0/">Pelican 3.5.0 docs</a></li>
+</ol>
                     <a class="btn btn-default btn-xs" href="/pelican and github.html">more ...</a>
                 </div>
             </article>
@@ -150,24 +175,14 @@ cd dir_name
                                 Java
                             </a>
                         </li>
-                        <li class="list-group-item tag-1">
-                            <a href="/tag/database.html">
-                                Database
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
+                        <li class="list-group-item tag-2">
                             <a href="/tag/python.html">
                                 Python
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/isolation.html">
-                                Isolation
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="/tag/nosql.html">
-                                NoSQL
+                        <li class="list-group-item tag-2">
+                            <a href="/tag/database.html">
+                                Database
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -176,8 +191,8 @@ cd dir_name
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="/tag/oracle.html">
-                                Oracle
+                            <a href="/tag/nosql.html">
+                                NoSQL
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -186,8 +201,28 @@ cd dir_name
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
+                            <a href="/tag/oracle.html">
+                                Oracle
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/cloud.html">
+                                Cloud
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/pelican.html">
+                                pelican
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
                             <a href="/tag/markdownbiao-ji-yu-yan.html">
                                 Markdown，标记语言
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/isolation.html">
+                                Isolation
                             </a>
                         </li>
                     </ul>

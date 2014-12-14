@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>图像识别 - Cheng's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/image_regonize.html">
+
+        <meta name="author" content="Cheng" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="记录一次图像识别技术的基础调研" />
+
+    <!-- Enable latex plugin -->
+
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Cheng's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="/category/cloud.html">Cloud</a>
+                        </li>
+                        <li >
+                            <a href="/category/database.html">Database</a>
+                        </li>
+                        <li class="active">
+                            <a href="/category/domain.html">Domain</a>
+                        </li>
+                        <li >
+                            <a href="/category/java.html">Java</a>
+                        </li>
+                        <li >
+                            <a href="/category/other.html">Other</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/image_regonize.html"
+                       rel="bookmark"
+                       title="Permalink to 图像识别">
+                        图像识别
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-10-01T22:00:00+08:00"> Wed 01 October 2014</time>
+    </span>
+
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/.html"></a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h2>图像检索的相关背景</h2>
+<p>从难易程度和发展顺序,不同的研究方向上大致上可以将图像检索划分为这么几个阶段<br />
+1. 基于文本的关键字搜索图像（CBIR） – 淘宝: 搜索”帽子”, 得到与帽子相关的图片产品<br />
+2. 基于内容的图像搜索（TBIR） – 淘宝：输入你喜欢的图片, 找到同款的产品<br />
+3. 基于语义的图像检索/图像识别 – 淘宝: 随手拍下喜欢帽子的图片, 通过搜索就能够找到同款或相似的额产品</p>
+<h2>阶段一 基于文本关键字搜索图像 (Text-based Image Retrieval)</h2>
+<p>相对普通的用例，用户输入文本关键字, 根据预定义的索引, 查找相对应的图片<br />
+1. 特征类别分化，图片库 --&gt; 图片特征库 --&gt; 关键字 类别 输入 匹配 检索结果
+没有太多可以讨论的, 关键在于根据图片建立反向关键词索引的过程.</p>
+<h2>阶段二 反向图像搜索/基于内容的图像搜索 (Reverse Image Search /content-based image retrieval)</h2>
+<p>基于内容的图像检索技术利用图像本身就有的物理信息，通过对图像的颜色、纹理、形状和空间位置等特征进行比较，在一些特定的领域得到了大量的应用。 
+从程序过程上来看， 可以分为如下： 图片特征值提取 --&gt; 图片特征库 --&gt; 待识别图片 特征提取 匹配 检索结果。<br />
+目前图像识别搜索采用的算法大都直接使用或者借鉴了SIFT， 通过定义一些的特征点或者说是指纹（颜色，纹理，形状特征）来取得图像文件的特征值。图片指纹并不能达到图片在视觉上的相似性搜索，当然它可适用于比较精准的搜索.  </p>
+<h5>罗列下常见的算法：</h5>
+<ul>
+<li>SIFT(Scale-invariant feature transform), Lowe, 1999 -- 分析提取图像中的向量特征点进行匹配  </li>
+<li>PCA-SIFT(Principle Component Analysis)  </li>
+<li>SURF(Speeded Up Robust Features)  </li>
+</ul>
+<h5>一些基于反向搜索的商业案例:</h5>
+<ol>
+<li>http://tineye.com – 基于图片的指纹</li>
+<li>http://www.tiltomo.com -- flickr 主题风格的色调和机制</li>
+<li>http://www.incogna.com -- 色彩和形状上的相似性</li>
+<li>http://www.terragalleria.com -- 视觉上的相似性</li>
+</ol>
+<h2>阶段三 图像识别 (Image Recognition)</h2>
+<p>更为广泛的图像检索（也称这为基于内容的图像检索），是希望能返回与查询图像在视觉上相似的图像而非要一模一样的内容。 纯粹的逆向图片搜索， 只能帮助找到特征值逼近相同的图片， 并无法分类解释图片当中的具体内容。而更为高级的图片是要建立高层的语义特征而非简单的颜色、纹理、形状等低层特征。<br />
+Google利用了其原有的庞大的文本数据库， 为图像反查和文本搜索引擎的结合; 首先查询和原图相关的图片,再从全文搜索引擎猜测相关的内容。换句话说, 通过其web的上下文信息来反补了其原本不足的语义。<br />
+Google的方式：找到原图、认出图中是什么、找到类似的图、找到相关网页。
+举个例子: 依据蘑菇的图片进行搜索</p>
+<h5>上图的内容分别为:</h5>
+<ol>
+<li>找到原图</li>
+<li>认出图中是什么</li>
+<li>找到类似的图</li>
+<li>找到相关的网页</li>
+</ol>
+<p>思考一下此类方案的局限性 ，在于你用来搜索的原图片，是网上已有的，而不是自己拍摄的实物。试图在网上搜索出自己刚拍的一张照片里面究竟是什么东西，这种技术还处于极其原始的状态。<br />
+目前只能做到对照片中外观特征十分明显的对象做初步的模式识别，并辅以人工验证。
+比如交通摄像头，对车牌这个方方正正的大蓝框和里面的大白字进行识别，然后让交警亲自比对，才能认定一个车牌号是否正确；<br />
+日常生活中更常见的二维码、条码、指纹识别、文字OCR，无一不是特征极其明显，而且拍摄时还要特意摆正对准。<br />
+换句话说,复杂图像的图像识别技术还处于很原始的阶段。  </p>
+<h2>综述</h2>
+<p>//todo</p>
+<h2>资料引用</h2>
+<ol>
+<li>图像检索技术进展综述 -- 甘晨，易法令，王圆妹  长江大学计算机科学学院 434023</li>
+<li>http://en.wikipedia.org/wiki/Scale-invariant_feature_transform -- SIFT 基本介绍</li>
+<li>http://leafsnap.com/ --有意思的app, 拍摄植物的一枚叶子、花，果实或种子，app会分析告诉你这是什么植物。</li>
+<li>http://www.ipol.im/pub/pre/82/ -- The Anatomy of the SIFT Method</li>
+<li>//todo</li>
+</ol>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="#"><i class="fa fa-you-can-add-links-in-your-config-file-square fa-lg"></i> You can add links in your config file</a></li>
+                    <li class="list-group-item"><a href="#"><i class="fa fa-another-social-link-square fa-lg"></i> Another social link</a></li>
+                  </ul>
+                </li>
+
+
+
+                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="/tag/java.html">
+                                Java
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="/tag/python.html">
+                                Python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="/tag/database.html">
+                                Database
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/mongodb.html">
+                                MongoDB
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/nosql.html">
+                                NoSQL
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/.html">
+                                
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/oracle.html">
+                                Oracle
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/cloud.html">
+                                Cloud
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/pelican.html">
+                                pelican
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/markdownbiao-ji-yu-yan.html">
+                                Markdown，标记语言
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/isolation.html">
+                                Isolation
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+    </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" target="_blank">
+                You can modify those links in your config file
+            </a>
+        </li>
+      </ul>
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Cheng
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = '/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'berialcheng',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-49522852-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>
