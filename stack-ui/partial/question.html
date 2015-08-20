@@ -1,0 +1,63 @@
+<div class="container" data-spy="scroll" data-target=".scrollspy">
+	<div class="row">
+		<div class="col-md-2 scrollspy">
+			<ul id="nav" class="nav hidden-xs hidden-s affix" data-spy="affix">
+				<li><a data-target="#{{question.question_id}}" ng-click="gotoAnchor(question.question_id)">Question</a></li>
+				<li ng-repeat="answer in answers">
+					<a data-target="#{{answer.answer_id}}" ng-click="gotoAnchor(answer.answer_id)">{{answer.answer_id}} | {{answer.score}} <span ng-if="answer.is_accepted"><i class="fa fa-check fa-fw"></i></span></a> 
+				</li>
+				<!--<li>
+					<a class="text-center">
+						<i class="fa fa-arrow-circle-up fa-fw"></i>
+					</a>
+				</li>-->
+			</ul>
+		</div>
+		<div class="col-md-10">
+			<div class="row" id="{{question.question_id}}">
+				<div class="col-md-12">
+					<h3 ng-bind-html="question.title | trustHtml"></h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span ng-bind-html="question.body | trustHtml"></span>
+				</div>
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="col-md-12">
+					<h5>{{question.answer_count}} answers</h5>
+				</div>
+			</div>
+			<div class="row" ng-repeat="answer in answers">
+				<hr/>
+				<div class="col-md-12" id="{{answer.answer_id}}">
+					<div class="row">
+						<div class="col-md-1">
+							<span class="badge">{{answer.score}}</span>
+						</div>
+						<div class="col-md-2">
+						</div>
+						<div class="col-md-2">
+							<small class="text-muted"> Created: {{answer.creation_date * 1000 | date:'yyyy-MM-dd'}}</small>
+						</div>
+						<div class="col-md-2">
+							<small class="text-muted"> Updated: {{answer.last_activity_date * 1000 | date:'yyyy-MM-dd'}}</small>
+						</div>
+						<div class="col-md-offset-3 col-md-2">
+							<!-- <span class="gravatar-wrapper-32"><img ng-src="{{answer.owner.profile_image}}"></span> -->
+							<span ng-bind-html="answer.owner.display_name | trustHtml"></span>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-md-12">
+							<span ng-bind-html="answer.body | trustHtml"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
