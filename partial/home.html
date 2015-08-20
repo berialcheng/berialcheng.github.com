@@ -1,0 +1,107 @@
+<div class="container" style="min-height: 400px;">
+	<br/>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 text-center">
+			<h2>Simple search tool for Stackoverflow.</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 text-center">
+			<p>by berialcheng</p>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="input-group input-group-lg">
+				<input type="text" class="form-control" placeholder="Search here" ng-model="query">
+				<span class="input-group-btn">
+				    <button class="btn btn-primary" type="button" ng-click="search()">
+				    	<i class="fa fa-search fa-fw"></i>
+				    </button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row" ng-if="quota_percent">
+		<div class="col-md-offset-4 col-md-4">
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: {{quota_percent}}%;">
+			    {{quota_remaining}} / {{quota_max}}
+			  </div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</div>
+
+	<div class="row">
+		<div class="container" >
+			<div class="row" ng-if="questions.length == 0">
+				<div class="col-md-offset-1 col-md-10">
+					<div class="text-center">
+						<div>
+							<i class="fa fa-info-circle fa-4x"></i>
+						</div>
+						<h3>
+							No results matched your search.
+						</h3>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-if="questions.length != 0" ng-repeat="question in questions">
+				<div class="col-md-offset-1 col-md-10" ng-click="view(question)">
+					<div class="row question">
+						<div class="col-md-1 text-center" style="border-right: 1px grey solid;">
+							<div>{{question.score}}</div>
+							<div>Votes</div>
+						</div>
+						<div class="col-md-1 text-center" style="border-right: 1px grey solid;">
+							<div>{{question.answer_count}}</div>
+							<div>Answers</div>
+						</div>
+						<div class="col-md-1 text-center" style="border-right: 1px grey solid;">
+							<div>{{question.view_count}}</div>
+							<div>Views</div>
+						</div>
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-12">
+									<div ng-bind-html="question.title | trustHtml"></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-8">
+									<span class="label label-default" ng-repeat="tag in question.tags" style="margin-right:10px;">
+										{{tag}}
+									</span>
+								</div>
+								<div class="col-md-offset-1 col-md-3 small">
+									<small>
+										asked {{question.creation_date * 1000 | date:'yyyy-MM-dd'}}
+									</small>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="row">
+								<div class="col-md-12" ng-switch="isFavourite(question)">
+									<i ng-switch-when="true" class="fa fa-bookmark fa-2x fa-fw" ng-click="removeFromFavourite(question,$event)"></i>
+									<i ng-switch-when="false" class="fa fa-bookmark-o fa-2x fa-fw" ng-click="addToFavourite(question,$event)"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
